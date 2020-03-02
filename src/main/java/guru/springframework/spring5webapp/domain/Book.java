@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 
 
@@ -21,13 +22,16 @@ public class Book {
     @JoinTable(name= "author_book"
                 , joinColumns = @JoinColumn(name="book_id")
                 , inverseJoinColumns = @JoinColumn(name="author_id"))
-    private Long Id;
-    private String Title;
-    private String Isbn;
+    private Long id;
+    private String title;
+    private String isbn;
 
     @ManyToMany
     @JoinTable(name="author_book")
     private Set<Author> authors = new HashSet<>();
+
+    @ManyToOne
+    private Publisher publisher;
     
     public Book() {
     }
@@ -37,50 +41,50 @@ public class Book {
      * @param isbn
      */
     public Book(String _title, String _isbn) {
-        Title = _title;
-        Isbn = _isbn;
+        title = _title;
+        isbn = _isbn;
     }
 
     /**
      * @return the title
      */
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     /**
      * @param title the title to set
      */
     public void setTitle(final String _title) {
-        Title = _title;
+        title = _title;
     }
 
     /**
      * @return the isbn
      */
     public String getIsbn() {
-        return Isbn;
+        return isbn;
     }
 
     /**
      * @param isbn the isbn to set
      */
     public void setIsbn(final String _isbn) {
-        Isbn = _isbn;
+        isbn = _isbn;
     }
 
     /**
      * @return the id
      */
     public Long getId() {
-        return Id;
+        return id;
     }
 
     /**
      * @param id the id to set
      */
     public void setId(final Long id) {
-        Id = id;
+        this.id = id;
     }
 
     /**
@@ -112,10 +116,10 @@ public class Book {
         if (getClass() != obj.getClass())
             return false;
         final Book other = (Book) obj;
-        if (Id == null) {
-            if (other.Id != null)
+        if (id == null) {
+            if (other.id != null)
                 return false;
-        } else if (!Id.equals(other.Id))
+        } else if (!id.equals(other.id))
             return false;
         return true;
     }
@@ -130,7 +134,7 @@ public class Book {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((Id == null) ? 0 : Id.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
 
@@ -142,7 +146,21 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book [Id=" + Id + ", Isbn=" + Isbn + ", Title=" + Title + ", authors=" + authors + "]";
+        return "Book [Id=" + id + ", Isbn=" + isbn + ", Title=" + title + ", authors=" + authors + "]";
+    }
+
+    /**
+     * @return the publisher
+     */
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    /**
+     * @param publisher the publisher to set
+     */
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
     }
 
 }

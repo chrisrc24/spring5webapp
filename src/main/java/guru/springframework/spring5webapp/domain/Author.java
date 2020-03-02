@@ -15,76 +15,76 @@ public class Author{
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)    
-    private Long Id;
+    private Long id;
 
-    private String FirstName;
-    private String LastName;
+    private String firstName;
+    private String lastName;
 
     @ManyToMany(mappedBy = "authors")
-    private Set<Book> Books = new HashSet<>();
+    private Set<Book> books = new HashSet<>();
 
     public Author() {
     }
 
     public Author(String _firstName, String _lastName) {
-        this.FirstName = _firstName;
-        this.LastName = _lastName;
+        this.firstName = _firstName;
+        this.lastName = _lastName;
     }
 
     /**
      * @return the firstName
      */
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
     /**
      * @param firstName the firstName to set
      */
     public void setFirstName(final String _firstName) {
-        this.FirstName = _firstName;
+        this.firstName = _firstName;
     }
 
     /**
      * @return the lastName
      */
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     /**
      * @param lastName the lastName to set
      */
     public void setLastName(final String _lastName) {
-        this.LastName = _lastName;
+        this.lastName = _lastName;
     }
 
     /**
      * @return the books
      */
     public Set<Book> getBooks() {
-        return Books;
+        return books;
     }
 
     /**
      * @param books the books to set
      */
     public void setBooks(final Set<Book> _books) {
-        this.Books = _books;
+        this.books = _books;
     }
 
     /**
      * @return the id
      */
     public Long getId() {
-        return Id;
+        return id;
     }
 
     /**
      * @param id the id to set
      */
     public void setId(final Long id) {
-        Id = id;
+        this.id = id;
     }
 
     /*
@@ -97,7 +97,7 @@ public class Author{
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((Id == null) ? 0 : Id.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
 
@@ -116,10 +116,10 @@ public class Author{
         if (getClass() != obj.getClass())
             return false;
         Author other = (Author) obj;
-        if (Id == null) {
-            if (other.Id != null)
+        if (id == null) {
+            if (other.id != null)
                 return false;
-        } else if (!Id.equals(other.Id))
+        } else if (!id.equals(other.id))
             return false;
         return true;
     }
@@ -132,7 +132,7 @@ public class Author{
 
     @Override
     public String toString() {
-        return "Author [Books=" + Books + ", FirstName=" + FirstName + ", Id=" + Id + ", LastName=" + LastName + "]";
+        return "Author [Books=" + books + ", FirstName=" + firstName + ", Id=" + id + ", LastName=" + lastName + "]";
     }
 
 

@@ -2,10 +2,13 @@ package guru.springframework.spring5webapp.domain;
 
 
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-
+import java.util.HashSet;
+import java.util.Set;
 
 
 
@@ -14,16 +17,23 @@ public class Publisher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
-    private String Name;
-    private String Address1;
-    private String City;
-    private String State;
-    private String Zip;
+    private Long id;
+
+    private String name;
+    private String addressLine1;
+    private String city;
+    private String state;
+    private String zip;
+
+    @OneToMany
+    @JoinColumn(name="publisher_id")
+    private Set<Book> books = new HashSet<>();
+
 
     /**
      * 
      */
+    
     public Publisher() {
     }
 
@@ -35,12 +45,97 @@ public class Publisher {
      * @param state
      * @param zip
      */
-    public Publisher(String name, String address1, String city, String state, String zip) {
-        Name = name;
-        Address1 = address1;
-        City = city;
-        State = state;
-        Zip = zip;
+    public Publisher(final String name, final String address1, final String city, final String state,
+            final String zip) {
+        this.name = name;
+        this.addressLine1 = address1;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+    }
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(final Long id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(final String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the address1
+     */
+    public String getAddress1() {
+        return addressLine1;
+    }
+
+    /**
+     * @param address1 the address1 to set
+     */
+    public void setAddress1(final String address1) {
+        this.addressLine1 = address1;
+    }
+
+    /**
+     * @return the city
+     */
+    public String getCity() {
+        return city;
+    }
+
+    /**
+     * @param city the city to set
+     */
+    public void setCity(final String city) {
+        this.city = city;
+    }
+
+    /**
+     * @return the state
+     */
+    public String getState() {
+        return state;
+    }
+
+    /**
+     * @param state the state to set
+     */
+    public void setState(final String state) {
+        this.state = state;
+    }
+
+    /**
+     * @return the zip
+     */
+    public String getZip() {
+        return zip;
+    }
+
+    /**
+     * @param zip the zip to set
+     */
+    public void setZip(final String zip) {
+        this.zip = zip;
     }
 
     /*
@@ -53,7 +148,7 @@ public class Publisher {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((Address1 == null) ? 0 : Address1.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
 
@@ -64,104 +159,48 @@ public class Publisher {
      */
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj)
             return true;
         if (obj == null)
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Publisher other = (Publisher) obj;
-        if (Address1 == null) {
-            if (other.Address1 != null)
+        final Publisher other = (Publisher) obj;
+        if (id == null) {
+            if (other.id != null)
                 return false;
-        } else if (!Address1.equals(other.Address1))
+        } else if (!id.equals(other.id))
             return false;
         return true;
     }
 
     /**
-     * @return the id
+     * @return the addressLine1
      */
-    public Long getId() {
-        return Id;
+    public String getAddressLine1() {
+        return addressLine1;
     }
 
     /**
-     * @param id the id to set
+     * @param addressLine1 the addressLine1 to set
      */
-    public void setId(Long id) {
-        Id = id;
+    public void setAddressLine1(final String addressLine1) {
+        this.addressLine1 = addressLine1;
     }
 
     /**
-     * @return the name
+     * @return the books
      */
-    public String getName() {
-        return Name;
+    public Set<Book> getBooks() {
+        return books;
     }
 
     /**
-     * @param name the name to set
+     * @param books the books to set
      */
-    public void setName(String name) {
-        Name = name;
-    }
-
-    /**
-     * @return the address1
-     */
-    public String getAddress1() {
-        return Address1;
-    }
-
-    /**
-     * @param address1 the address1 to set
-     */
-    public void setAddress1(String address1) {
-        Address1 = address1;
-    }
-
-    /**
-     * @return the city
-     */
-    public String getCity() {
-        return City;
-    }
-
-    /**
-     * @param city the city to set
-     */
-    public void setCity(String city) {
-        City = city;
-    }
-
-    /**
-     * @return the state
-     */
-    public String getState() {
-        return State;
-    }
-
-    /**
-     * @param state the state to set
-     */
-    public void setState(String state) {
-        State = state;
-    }
-
-    /**
-     * @return the zip
-     */
-    public String getZip() {
-        return Zip;
-    }
-
-    /**
-     * @param zip the zip to set
-     */
-    public void setZip(String zip) {
-        Zip = zip;
+    public void setBooks(final Set<Book> books) {
+        this.books = books;
     }
 
 
