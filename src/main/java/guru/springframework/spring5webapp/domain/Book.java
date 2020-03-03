@@ -40,7 +40,7 @@ public class Book {
      * @param title
      * @param isbn
      */
-    public Book(String _title, String _isbn) {
+    public Book(final String _title, final String _isbn) {
         title = _title;
         isbn = _isbn;
     }
@@ -146,7 +146,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book [Id=" + id + ", Isbn=" + isbn + ", Title=" + title + ", authors=" + authors + "]";
+        return "Book [Id=" + id + ", Isbn=" + isbn + ", Title=" + title + "]";
     }
 
     /**
@@ -159,7 +159,7 @@ public class Book {
     /**
      * @param publisher the publisher to set
      */
-    public void setPublisher(Publisher publisher) {
+    public void setPublisher(final Publisher publisher) {
         this.publisher = publisher;
     }
 
